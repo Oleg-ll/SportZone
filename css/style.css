@@ -1,0 +1,213 @@
+
+/* Базові стилі */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+a { text-decoration: none; }
+
+
+/* Шапка */
+
+.header {
+  background: #fff;
+  padding: 15px 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.header-inner {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #0d6efd;
+}
+.search-box {
+  display: flex;
+  width: 50%;
+}
+.search-input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.header-actions a {
+  margin-left: 10px;
+}
+
+
+/* Кнопки */
+
+.button {
+  display: inline-block;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+  text-align: center;
+}
+.button-blue {
+  background: #0d6efd;
+  color: #fff;
+  border: none;
+}
+.button-blue:hover { background: #0b5ed7; }
+
+.button-blue-outline {
+  border: 1px solid #0d6efd;
+  color: #0d6efd;
+  background: transparent;
+}
+.button-blue-outline:hover {
+  background: #0d6efd;
+  color: #fff;
+}
+
+.button-dark-outline {
+  border: 1px solid #333;
+  color: #333;
+  background: transparent;
+}
+.button-dark-outline:hover {
+  background: #333;
+  color: #fff;
+}
+
+.button-yellow {
+  background: #ffc107;
+  border: none;
+  color: #000;
+}
+.button-yellow:hover { background: #e0a800; color: #fff; }
+
+.button.large {
+  font-size: 1.2rem;
+  padding: 12px 25px;
+}
+
+
+/* Меню категорій */
+
+.menu-bar {
+  background: #0d6efd;
+  text-align: center;
+  padding: 10px;
+}
+.menu-bar a {
+  color: #fff;
+  margin: 0 15px;
+}
+
+/* Hero банер */
+
+.hero {
+  background: url('../assets/banner.jpg') center/cover no-repeat;
+  height: 500px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+}
+.hero::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.4);
+}
+.hero-text { position: relative; z-index: 1; }
+.hero h1 { font-size: 3rem; margin-bottom: 20px; }
+.hero p { font-size: 1.5rem; margin-bottom: 30px; }
+
+
+/* Категорії */
+
+.categories {
+  padding: 3rem 0;
+  text-align: center;
+}
+.flex-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+.category-box img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 6px;
+  transition: transform 0.3s;
+}
+.category-box img:hover { transform: scale(1.05); }
+
+/* Новинки */
+
+.new-collection {
+  padding: 3rem 0;
+  text-align: center;
+}
+.product-box {
+  flex: 1 1 calc(25% - 20px);
+  max-width: 250px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  transition: 0.3s;
+}
+.product-box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+.product-box img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+.product-info { padding: 15px; }
+
+/* Футер */
+
+.footer {
+  background: #f8f9fa;
+  padding: 30px 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+/* Адаптивність */
+
+@media (max-width: 992px) {
+  .hero h1 { font-size: 2.5rem; }
+  .hero p { font-size: 1.2rem; }
+}
+
+@media (max-width: 768px) {
+  .hero h1 { font-size: 2rem; }
+  .hero p { font-size: 1rem; }
+  .product-box { flex: 1 1 45%; }
+}
+
+@media (max-width: 480px) {
+  .product-box { flex: 1 1 90%; }
+  .header-inner { flex-direction: column; gap: 10px; }
+  .search-box { width: 100%; }
+}
+
+.wrapper {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
