@@ -17,15 +17,18 @@
         <button class="button button-blue-outline" type="submit">Пошук</button>
       </form>
       <div class="header-actions">
-        <a href="#" class="button button-dark-outline">Увійти</a>
+        <a href="login.html" class="button button-dark-outline">Увійти</a>
+        <a href="register.html" class="button button-blue-outline">Реєстрація</a>
         <a href="#" class="button button-dark-outline">🛒 Кошик</a>
       </div>
     </div>
   </header>
 
-  <!-- Меню категорій -->
-  <nav class="menu-bar">
-    <div class="wrapper">
+  <!-- Меню категорій (десктоп) + бургер (мобіль) -->
+<nav class="menu-bar">
+  <div class="wrapper menu-bar-inner">
+    <!-- Посилання (для десктопа) -->
+    <div class="menu-links" id="menu-links">
       <a href="#">Одяг</a>
       <a href="#">Взуття</a>
       <a href="#">Тренажери</a>
@@ -33,7 +36,27 @@
       <a href="#">Ігрові види спорту</a>
       <a href="#">Аксесуари</a>
     </div>
-  </nav>
+
+    <!-- Бургер-іконка (показується на мобільних) -->
+    <button class="burger-btn" id="burger-btn" aria-label="Відкрити меню">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+  </div>
+
+  <!-- Випадаюче меню (мобільне) -->
+  <div class="mobile-dropdown" id="mobile-dropdown" aria-hidden="true">
+    <a href="#">Одяг</a>
+    <a href="#">Взуття</a>
+    <a href="#">Тренажери</a>
+    <a href="#">Туризм</a>
+    <a href="#">Ігрові види спорту</a>
+    <a href="#">Аксесуари</a>
+  </div>
+</nav>
+
+
 
   <!-- Головний банер -->
   <section class="hero">
@@ -102,6 +125,7 @@
       </p>
     </div>
   </footer>
+  <script src="../js/script.js"></script>
 
 </body>
 </html>
