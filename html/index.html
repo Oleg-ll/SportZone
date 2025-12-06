@@ -24,11 +24,23 @@
     </div>
   </header>
 
-  <!-- Меню категорій (десктоп) + бургер (мобіль) -->
-<nav class="menu-bar">
-  <div class="wrapper menu-bar-inner">
-    <!-- Посилання (для десктопа) -->
-    <div class="menu-links" id="menu-links">
+  <!-- Меню категорій -->
+  <nav class="menu-bar">
+    <div class="wrapper menu-bar-inner">
+      <div class="menu-links" id="menu-links">
+        <a href="#">Одяг</a>
+        <a href="#">Взуття</a>
+        <a href="#">Тренажери</a>
+        <a href="#">Туризм</a>
+        <a href="#">Ігрові види спорту</a>
+        <a href="#">Аксесуари</a>
+      </div>
+      <button class="burger-btn" id="burger-btn" aria-label="Відкрити меню">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+    </div>
+
+    <div class="mobile-dropdown" id="mobile-dropdown" aria-hidden="true">
       <a href="#">Одяг</a>
       <a href="#">Взуття</a>
       <a href="#">Тренажери</a>
@@ -36,27 +48,7 @@
       <a href="#">Ігрові види спорту</a>
       <a href="#">Аксесуари</a>
     </div>
-
-    <!-- Бургер-іконка (показується на мобільних) -->
-    <button class="burger-btn" id="burger-btn" aria-label="Відкрити меню">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </button>
-  </div>
-
-  <!-- Випадаюче меню (мобільне) -->
-  <div class="mobile-dropdown" id="mobile-dropdown" aria-hidden="true">
-    <a href="#">Одяг</a>
-    <a href="#">Взуття</a>
-    <a href="#">Тренажери</a>
-    <a href="#">Туризм</a>
-    <a href="#">Ігрові види спорту</a>
-    <a href="#">Аксесуари</a>
-  </div>
-</nav>
-
-
+  </nav>
 
   <!-- Головний банер -->
   <section class="hero">
@@ -88,7 +80,7 @@
     </div>
   </section>
 
-  <!-- Новинки -->
+  <!-- Нова колекція -->
   <section class="new-collection">
     <div class="wrapper">
       <h2>Нова колекція</h2>
@@ -113,19 +105,23 @@
     </div>
   </section>
 
+  <!-- Товари з Бази Даних -->
+  <section class="db-products">
+    <div class="wrapper">
+      <h2>Товари з бази даних</h2>
+      <div class="flex-row" id="db-products-container"></div>
+    </div>
+  </section>
+
   <!-- Футер -->
   <footer class="footer">
     <div class="wrapper">
       <p>&copy; 2025 SportZone. Всі права захищені.</p>
       <p>Email: info@sportzone.ua | Телефон: +38 (097) 123-45-67</p>
-      <p>
-        <a href="#">Facebook</a> | 
-        <a href="#">Instagram</a> | 
-        <a href="#">TikTok</a>
-      </p>
+      <p><a href="#">Facebook</a> | <a href="#">Instagram</a> | <a href="#">TikTok</a></p>
     </div>
   </footer>
-  <script src="../js/script.js"></script>
 
+  <script src="../js/script.js"></script>
 </body>
 </html>

@@ -444,3 +444,159 @@ a {
 .admin-card h4 {
   margin-bottom: 15px;
 }
+
+/* --- Адмін панель — форма додавання товарів --- */
+
+.admin-form {
+  margin: 40px auto;
+  background: #fff;
+  padding: 20px;
+  width: 400px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+}
+
+.admin-form input,
+.admin-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0 16px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.admin-form button {
+  width: 100%;
+  padding: 12px;
+  background: #0d6efd;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: .3s;
+}
+
+.admin-form button:hover {
+  background: #0b5ed7;
+}
+
+/* --- Карточки товарів (адаптовані під твій дизайн) --- */
+
+.admin-product-card {
+  width: 260px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  padding: 15px;
+  margin: 12px;
+  display: inline-block;
+  vertical-align: top;
+  transition: 0.3s;
+}
+
+.admin-product-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+}
+
+.admin-product-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.admin-product-card h3 {
+  margin-top: 12px;
+  font-size: 18px;
+}
+
+.admin-product-card p {
+  margin: 6px 0;
+}
+
+/* Кнопки редагувати / видалити */
+.admin-btn {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.admin-btn-edit {
+  background: #ffc107;
+}
+.admin-btn-edit:hover {
+  background: #e0a800;
+}
+
+.admin-btn-delete {
+  background: #dc3545;
+  color: #fff;
+}
+.admin-btn-delete:hover {
+  background: #bb2d3b;
+}
+
+/* --- Модальне вікно редагування --- */
+
+#editModal {
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.6);
+  justify-content:center;
+  align-items:center;
+  z-index: 999;
+}
+
+#editForm {
+  background:#fff;
+  padding:25px;
+  width:400px;
+  border-radius:12px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.25);
+}
+
+#editForm input,
+#editForm textarea {
+  width:100%;
+  padding:10px;
+  margin:8px 0 16px;
+  border:1px solid #ccc;
+  border-radius:6px;
+}
+
+#editForm button {
+  padding:12px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  font-size:15px;
+}
+
+#editForm button[type="submit"] {
+  background:#0d6efd;
+  color:#fff;
+}
+#editForm button[type="submit"]:hover {
+  background:#0b5ed7;
+}
+
+#editForm button[type="button"] {
+  background:#6c757d;
+  color:#fff;
+}
+#editForm button[type="button"]:hover {
+  background:#5c636a;
+}
+/* --- Кінець стилів для адмінки --- */

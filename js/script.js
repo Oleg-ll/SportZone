@@ -36,3 +36,55 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape') closeMenu();
   });
 });
+
+fetch("http://localhost:3000/api/products")
+  .then(res => res.json())
+  .then(data => {
+    const container = document.getElementById("db-products-container");
+
+    data.forEach(p => {
+      const div = document.createElement("div");
+      div.className = "product-box";
+
+      div.innerHTML = `
+        <img src="../assets/default-product.jpg" alt="${p.ProductName}">
+        <div class="product-info">
+          <h5>${p.ProductName}</h5>
+          <p>Ціна: ${p.Price} грн</p>
+          <a href="#" class="button button-blue">У кошик</a>
+        </div>
+      `;
+
+      container.appendChild(div);
+    });
+  })
+  .catch(err => console.error("Помилка:", err));
+
+  const API = "http://localhost:3000/api/products";
+
+function loadHomeProducts() {
+    fetch(API)
+        .then(res => res.json())
+        .then(data => {
+            const box = document.getElementById("db-products-container");
+
+            if (!box) return; // якщо це інша сторінка
+
+            box.innerHTML = "";
+
+            data.forEach(p => {
+                box.innerHTML += `
+                    <div class="product-box">
+                        <img src="${p.ImageURL}" alt="${p.ProductName}">
+                        <div class="product-info">
+                            <h5>${p.ProductName}</h5>
+                            <p>Ціна: ${p.Price} грн</p>
+                            <a href="#" class="button button-blue">У кошик</a>
+                        </div>
+                    </div>
+                `;
+            });
+        });
+}
+
+loadHomeProducts();

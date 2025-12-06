@@ -1,45 +1,257 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Панель адміністратора | SportZone</title>
-  <link rel="stylesheet" href="../css/style.css" />
+    <meta charset="UTF-8">
+    <title>Адмін панель</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 30px auto;
+        }
+
+        h2 { margin-top: 40px; }
+
+        form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+        }
+
+        button {
+            padding: 10px;
+            cursor: pointer;
+            background: #2e7dff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        table, td, th {
+            border: 1px solid #bbb;
+            padding: 8px;
+        }
+
+        img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .actions button {
+            margin-right: 5px;
+            padding: 6px 10px;
+        }
+
+        /* ===== MODAL ===== */
+        .modal {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 20px;
+            width: 400px;
+            border-radius: 10px;
+        }
+
+        .modal-content input,
+        .modal-content textarea {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .close {
+            float: right;
+            cursor: pointer;
+            font-size: 20px;
+        }
+    </style>
 </head>
 <body>
-  <header class="header admin-header">
-    <div class="wrapper header-inner">
-      <a class="logo" href="index.html">SportZone</a>
-      <nav>
-        <a href="#" class="button button-blue-outline">Товари</a>
-        <a href="#" class="button button-blue-outline">Користувачі</a>
-        <a href="#" class="button button-blue-outline">Замовлення</a>
-        <a href="index.html" class="button button-dark-outline">Вийти</a>
-      </nav>
+
+<h1>Адмін-панель</h1>
+
+<h2>Додати товар</h2>
+
+<form id="productForm">
+    <input type="text" id="ProductName" placeholder="Назва товару" required>
+    <input type="number" id="Price" placeholder="Ціна" required>
+    <input type="number" id="Stock" placeholder="Кількість" required>
+    <input type="number" id="CategoryID" placeholder="ID категорії" required>
+
+    <input type="text" id="ImageURL" placeholder="URL картинки (https://...)">
+
+    <textarea id="Description" placeholder="Опис товару" style="grid-column: span 2;"></textarea>
+
+    <button type="submit" style="grid-column: span 2;">Додати товар</button>
+</form>
+
+<h2>Усі товари</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Фото</th>
+        <th>Назва</th>
+        <th>Ціна</th>
+        <th>Кількість</th>
+        <th>Категорія</th>
+        <th>Дії</th>
+    </tr>
+    </thead>
+    <tbody id="productTable"></tbody>
+</table>
+
+<!-- ===== MODAL EDIT ===== -->
+<div class="modal" id="editModal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">✖</span>
+        <h3>Редагувати товар</h3>
+
+        <input type="hidden" id="editID">
+
+        <input type="text" id="editName" placeholder="Назва">
+        <input type="number" id="editPrice" placeholder="Ціна">
+        <input type="number" id="editStock" placeholder="Кількість">
+        <input type="number" id="editCategory" placeholder="ID категорії">
+        <input type="text" id="editImage" placeholder="URL картинки">
+
+        <textarea id="editDescription" placeholder="Опис"></textarea>
+
+        <button onclick="saveEdit()">Зберегти</button>
     </div>
-  </header>
+</div>
 
-  <section class="admin-panel">
-    <div class="wrapper">
-      <h2>Панель адміністратора</h2>
-      
+<script>
+    const apiUrl = "http://localhost:3000/api/products";
 
-      <div class="admin-grid">
-        <div class="admin-card">
-          <h4>Керування товарами</h4>
-          <button class="button button-blue">Додати товар</button>
-          <button class="button button-dark-outline">Редагувати</button>
-          <button class="button button-dark-outline">Видалити</button>
-        </div>
+    document.addEventListener("DOMContentLoaded", loadProducts);
 
-        <div class="admin-card">
-          <h4>Керування користувачами</h4>
-          <button class="button button-blue">Додати користувача</button>
-          <button class="button button-dark-outline">Редагувати</button>
-          <button class="button button-dark-outline">Видалити</button>
-        </div>
-      </div>
-    </div>
-  </section>
+    // Завантажити всі товари
+    function loadProducts() {
+        fetch(apiUrl)
+            .then(res => res.json())
+            .then(data => {
+                const table = document.getElementById("productTable");
+                table.innerHTML = "";
+
+                data.forEach(p => {
+                    const row = `
+                        <tr>
+                            <td>${p.ProductID}</td>
+                            <td><img src="${p.ImageURL || "https://via.placeholder.com/80"}"></td>
+                            <td>${p.ProductName}</td>
+                            <td>${p.Price}</td>
+                            <td>${p.Stock}</td>
+                            <td>${p.CategoryID}</td>
+                            <td class="actions">
+                                <button onclick='openEdit(${JSON.stringify(p)})'>Редагувати</button>
+                                <button onclick="deleteProduct(${p.ProductID})">Видалити</button>
+                            </td>
+                        </tr>
+                    `;
+                    table.innerHTML += row;
+                });
+            });
+    }
+
+    // Додавання товару
+    document.getElementById("productForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const product = {
+            ProductName: document.getElementById("ProductName").value,
+            Description: document.getElementById("Description").value,
+            Price: document.getElementById("Price").value,
+            Stock: document.getElementById("Stock").value,
+            CategoryID: document.getElementById("CategoryID").value,
+            ImageURL: document.getElementById("ImageURL").value
+        };
+
+        fetch(apiUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(product)
+        })
+        .then(res => res.json())
+        .then(() => {
+            alert("Товар додано!");
+            loadProducts();
+        });
+    });
+
+    // ===== DELETE =====
+    function deleteProduct(id) {
+        if (!confirm("Видалити товар?")) return;
+
+        fetch(`${apiUrl}/${id}`, { method: "DELETE" })
+            .then(() => loadProducts());
+    }
+
+    // ===== EDIT =====
+    function openEdit(product) {
+        document.getElementById("editID").value = product.ProductID;
+        document.getElementById("editName").value = product.ProductName;
+        document.getElementById("editPrice").value = product.Price;
+        document.getElementById("editStock").value = product.Stock;
+        document.getElementById("editCategory").value = product.CategoryID;
+        document.getElementById("editImage").value = product.ImageURL;
+        document.getElementById("editDescription").value = product.Description;
+
+        document.getElementById("editModal").style.display = "flex";
+    }
+
+    function closeModal() {
+        document.getElementById("editModal").style.display = "none";
+    }
+
+    function saveEdit() {
+        const id = document.getElementById("editID").value;
+
+        const product = {
+            ProductName: document.getElementById("editName").value,
+            Description: document.getElementById("editDescription").value,
+            Price: document.getElementById("editPrice").value,
+            Stock: document.getElementById("editStock").value,
+            CategoryID: document.getElementById("editCategory").value,
+            ImageURL: document.getElementById("editImage").value
+        };
+
+        fetch(`${apiUrl}/${id}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(product)
+        })
+        .then(res => res.json())
+        .then(() => {
+            closeModal();
+            loadProducts();
+        });
+    }
+</script>
+
 </body>
 </html>
