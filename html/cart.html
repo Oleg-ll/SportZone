@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Кошик | SportZone</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .cart-container { max-width: 1000px; margin: 40px auto; padding: 0 20px; min-height: 50vh; }
+    .cart-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+    .cart-table th, .cart-table td { padding: 15px; text-align: left; border-bottom: 1px solid #ddd; }
+    .cart-img { width: 60px; height: 60px; object-fit: cover; border-radius: 4px; }
+    
+    .qty-btn { background: #eee; border: none; padding: 5px 10px; cursor: pointer; font-size: 16px; border-radius: 4px; }
+    .qty-btn:hover { background: #ddd; }
+    .qty-value { margin: 0 10px; font-weight: bold; }
+    
+    .remove-btn { color: #d9534f; background: none; border: none; cursor: pointer; text-decoration: underline; }
+    .remove-btn:hover { text-decoration: none; }
+
+    .cart-summary { text-align: right; font-size: 20px; margin-top: 20px; border-top: 2px solid #eee; padding-top: 20px; }
+    .total-price { color: #2e7dff; font-weight: bold; font-size: 24px; }
+    
+    .empty-msg { text-align: center; font-size: 18px; color: #777; margin-top: 50px; }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-inner wrapper">
+      <a class="logo" href="index.html">SportZone</a>
+      <div class="header-actions">
+        <a href="index.html" class="button button-dark-outline">← Продовжити покупки</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="cart-container">
+    <h1>Ваш кошик</h1>
+    
+    <div id="cart-content"></div>
+  </div>
+
+  <footer class="footer">
+    <div class="wrapper">
+      <p>&copy; 2025 SportZone. Всі права захищені.</p>
+    </div>
+  </footer>
+
+  <script src="../js/cart.js"></script>
+
+</body>
+</html>

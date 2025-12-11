@@ -13,23 +13,27 @@
       <nav>
         <a href="user.html" class="button button-blue-outline">Мій профіль</a>
         <a href="#" class="button button-blue-outline">Мої замовлення</a>
-        <a href="index.html" class="button button-dark-outline">Вийти</a>
-      </nav>
+        <button id="logoutBtn" class="button button-dark-outline">Вийти</button>
+</nav>
     </div>
   </header>
 
   <section class="user-dashboard">
     <div class="wrapper">
-      <h2>Вітаємо, <span class="highlight">Іване!</span></h2>
+      <h2>Вітаємо, <span class="highlight" id="userName">Користувач</span>!</h2>
       <p>Це ваша персональна сторінка користувача.</p>
 
       <div class="user-info-box">
         <h3>Ваш профіль</h3>
-        <p><b>Email:</b> ivan@gmail.com</p>
-        <p><b>Кількість замовлень:</b> 3</p>
-        <p><b>Останнє замовлення:</b> 20 жовтня 2025</p>
+        <p><b>Email:</b> <span id="userEmail">Завантаження...</span></p>
+        
+        <p><b>Кількість замовлень:</b> 0</p> 
+        <p><b>Останнє замовлення:</b> -</p>
       </div>
     </div>
-  </section>
+</section>
+
+<script src="../js/user.js"></script>
+  <script src="../js/user.js"></script>
 </body>
 </html>
